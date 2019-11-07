@@ -8,12 +8,12 @@
     "prepublish": "echo No prepublish steps required",
     "prepare": "npm run build",
   
-    "maintainer-clean": "run-p maintainer-clean:*",
+    "maintainer-clean": "run-s maintainer-clean:*",
     "maintainer-clean:package-lock": "rimraf package-lock.json",
     "maintainer-clean:clean": "npm run clean",
+    "maintainer-clean:node": "rimraf node_modules",
   
-    "clean": "run-p clean:*",
-    "clean:node": "rimraf node_modules",
+    "clean": "run-s clean:*",
     "clean:dist": "rimraf dist",
     "clean:tmp": "rimraf tmp",
     "clean:coverage": "rimraf coverage",
@@ -64,18 +64,18 @@
     "dist"
   ],
   "dependencies": {
-    "app-root-path": "^2.1.0",
+    "app-root-path": "^2.2.0",
     "es6-promise": "^4.2.5",
     "fs-extra": "^7.0.0",
     "git-describe": "^4.0.3",
-    "json-schema-to-typescript": "^5.7.0",
+    "json-schema-to-typescript": "6.1.3",
     "lodash": "^4.17.15",
     "minimist": "^1.2.0",
     "rimraf": "^3.0.0",
-    "sync-request": "^6.0.0"
+    "sync-request": "^6.1.0"
   },
   "publishConfig": {
-    "registry": "https://nexus3.cengage.info/repository/analytics-hosted-npm/"
+    "registry": "https://npmjs.org/repository/FIXME/"
   },
   "devDependencies": {
     "@types/jasmine": "~2.8.8",

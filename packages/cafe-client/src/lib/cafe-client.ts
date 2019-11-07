@@ -14,12 +14,12 @@
 //
 // End license text.
 
-import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, timer, SubscriptionLike, Subscription, PartialObserver } from 'rxjs';
+import { Observable, Subject, from, interval, merge, timer, Subscription } from 'rxjs';
 import {ClientEventing} from '@cafe/cafe-model';
 import * as ld from 'lodash';
 import * as uuid from 'uuid';
 import * as bowser from 'bowser';
-import * as moment_ from 'moment';
+import moment_ from 'moment';
 import {bufferCount} from 'rxjs/operators';
 
 const moment = moment_;
@@ -28,7 +28,8 @@ declare var require: any;
 
 // const uuidv4 = require('uuid/v4');
 // const bowser = require('bowser');
-const Fingerprint2 = require('fingerprintjs2');
+// const Fingerprint2 = require('fingerprintjs2');
+import { Fingerprint2 } from 'fingerprintjs2';
 const _ = ld;
 
 /*
@@ -274,7 +275,7 @@ export class DefaultEventingConfiguration implements EventingConfiguration, Requ
 }
 
 export interface GlobalContext {
-  userID?: string;
+  userId?: string;
   tags?: ClientEventing.ActivityTag[];
 }
 
@@ -289,7 +290,7 @@ interface ViewingTime {
 export interface ActivityRecordParameters {
   eventCategory: string;
   eventAction: string;
-  userID?: string;
+  userId?: string;
   eventDuration?: number;
   url?: string;
   tags?: ClientEventing.ActivityTag[];
@@ -390,7 +391,7 @@ export class CafeClient {
     {
       eventCategory,
       eventAction,
-      userID,
+      userId,
       eventDuration,
       url = this.currentUrl(),
       tags = [],
@@ -421,7 +422,7 @@ export class CafeClient {
       eventId: this.environmentOptions.uuid(),
       eventCategory: eventCategory,
       eventAction: eventAction,
-      userID: userID || this.globalContext.userID,
+      userId: userId || this.globalContext.userId,
       eventUri: this.environmentOptions.urlScrubber(url),
       tags: _.values(concatenatedTags),
     });
